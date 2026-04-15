@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 32px; padding: 0 56px; height: 68px; background: linear-gradient(to bottom, rgba(20,20,20,.98) 0%, transparent 100%); transition: background .3s; }
 nav.scrolled { background: rgba(20,20,20,.98); }
 .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--red); letter-spacing: 2px; text-decoration: none; flex-shrink: 0; }
@@ -31,39 +34,58 @@ nav.scrolled { background: rgba(20,20,20,.98); }
 .nav-badge { background: var(--red); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; letter-spacing: .5px; text-transform: uppercase; }
 .nav-contact { color: var(--text); font-size: 13px; text-decoration: none; border: 1px solid var(--muted); padding: 6px 14px; border-radius: 4px; transition: all .2s; }
 .nav-contact:hover { border-color: var(--white); color: var(--white); }
+
+/* HAMBURGER MOBILE */
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; margin-left: auto; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: rgba(20,20,20,.98); padding: 20px 24px 28px; z-index: 99; border-top: 1px solid rgba(255,255,255,.07); flex-direction: column; gap: 16px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--text); text-decoration: none; font-size: 15px; font-weight: 500; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu .nav-badge { width: fit-content; }
+
+/* HERO */
 .hero { position: relative; height: 85vh; min-height: 560px; display: flex; align-items: flex-end; padding: 0 56px 80px; overflow: hidden; }
 .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 65% 40%, rgba(229,9,20,.12) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 30% 60%, rgba(229,9,20,.06) 0%, transparent 60%), linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #141414 100%); }
 .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(229,9,20,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(229,9,20,.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%); }
-.hero-noise { position: absolute; inset: 0; opacity: .4; }
 .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(20,20,20,.7) 0%, transparent 50%), linear-gradient(to top, rgba(20,20,20,1) 0%, transparent 30%); }
 .hero-content { position: relative; z-index: 2; max-width: 640px; }
 .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
 .hero-tag { background: var(--red); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; }
 .hero-year { color: var(--muted); font-size: 12px; }
-.hero-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 8vw, 100px); line-height: .95; color: var(--white); letter-spacing: 2px; margin-bottom: 8px; }
+.hero-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 100px); line-height: .95; color: var(--white); letter-spacing: 2px; margin-bottom: 8px; }
 .hero-name span { color: var(--red); }
 .hero-title { font-size: 16px; font-weight: 300; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
 .hero-desc { font-size: 15px; line-height: 1.7; color: #b3b3b3; max-width: 500px; margin-bottom: 32px; }
 .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .pill { border: 1px solid rgba(229,9,20,.4); color: #e5e5e5; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; letter-spacing: .5px; }
-.hero-btns { display: flex; gap: 12px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 .btn-primary { display: flex; align-items: center; gap: 8px; background: var(--white); color: #000; font-size: 15px; font-weight: 700; padding: 12px 24px; border-radius: 4px; cursor: pointer; border: none; text-decoration: none; transition: background .15s; letter-spacing: .3px; }
 .btn-primary:hover { background: #e6e6e6; }
 .btn-secondary { display: flex; align-items: center; gap: 8px; background: rgba(109,109,110,.7); color: #fff; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 4px; cursor: pointer; border: none; text-decoration: none; transition: background .15s; letter-spacing: .3px; }
 .btn-secondary:hover { background: rgba(109,109,110,.9); }
+
 .hero-stats { position: absolute; right: 56px; bottom: 80px; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; z-index: 2; }
 .stat { text-align: right; }
 .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--white); line-height: 1; }
 .stat-num span { color: var(--red); }
 .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+/* ROWS */
 .rows-container { padding: 0 0 80px; position: relative; z-index: 2; }
 .row { margin-bottom: 8px; position: relative; }
 .row-header { display: flex; align-items: center; gap: 12px; padding: 0 56px; margin-bottom: 12px; }
 .row-title { font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: .3px; }
 .row-accent { width: 3px; height: 18px; background: var(--red); border-radius: 2px; }
 .row-count { font-size: 12px; color: var(--red); font-weight: 600; margin-left: auto; }
+
 .cards-track { display: flex; gap: 6px; padding: 8px 56px 20px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
 .cards-track::-webkit-scrollbar { display: none; }
+
+/* CARDS */
 .card { flex-shrink: 0; width: var(--card-w); height: var(--card-h); border-radius: 4px; position: relative; cursor: pointer; transition: transform .3s cubic-bezier(.2,.8,.3,1), z-index 0s .3s; overflow: visible; }
 .card:hover { transform: scale(1.28) translateY(-12%); z-index: 20; transition: transform .3s cubic-bezier(.2,.8,.3,1), z-index 0s 0s; }
 .card:first-child:hover { transform: scale(1.28) translateY(-12%) translateX(14%); }
@@ -75,6 +97,7 @@ nav.scrolled { background: rgba(20,20,20,.98); }
 .card-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px; z-index: 2; }
 .card-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 3px; }
 .card-name { font-size: 13px; font-weight: 700; color: var(--white); line-height: 1.3; }
+
 .card-expand { position: absolute; top: 100%; left: 0; right: 0; background: var(--surface); border-radius: 0 0 4px 4px; padding: 12px; opacity: 0; pointer-events: none; transform: translateY(-4px); transition: opacity .2s .1s, transform .2s .1s; box-shadow: 0 16px 40px rgba(0,0,0,.7); border: 1px solid rgba(229,9,20,.1); border-top: none; z-index: 10; }
 .card:hover .card-expand { opacity: 1; pointer-events: all; transform: translateY(0); }
 .card-expand-desc { font-size: 11px; color: #b3b3b3; line-height: 1.6; margin-bottom: 10px; }
@@ -82,30 +105,33 @@ nav.scrolled { background: rgba(20,20,20,.98); }
 .etag { background: var(--surface2); color: var(--muted); font-size: 9px; font-weight: 600; letter-spacing: .8px; padding: 2px 7px; border-radius: 2px; text-transform: uppercase; }
 .card-expand-btn { display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--red); color: #fff; font-size: 11px; font-weight: 700; padding: 7px 0; border-radius: 3px; cursor: pointer; border: none; width: 100%; letter-spacing: .5px; transition: background .15s; }
 .card-expand-btn:hover { background: var(--red-hover); }
+
 .card.wide { width: 400px; }
 .card.tall { height: 200px; }
-/* card backgrounds */
-.bg-elos { background: linear-gradient(135deg, #1a0a0a 0%, #2d0808 40%, #1a1010 100%); }
+
+/* Card backgrounds */
+.bg-elos { background: linear-gradient(135deg, #1a0a0a 0%, #2d0808 40%, #1a1010 100%); position: relative; overflow: hidden; }
 .bg-elos::after { content: 'ELOS'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue',sans-serif; font-size: 72px; color: rgba(229,9,20,.15); letter-spacing: 4px; pointer-events: none; }
 .bg-aflac { background: linear-gradient(135deg, #050816 0%, #0d1a3a 40%, #091030 100%); }
 .bg-wto { background: linear-gradient(135deg, #0a1208 0%, #1a2e10 40%, #121e0e 100%); }
 .bg-bpmn { background: linear-gradient(135deg, #08080e 0%, #16142a 40%, #100e20 100%); }
-.bg-cert { background: linear-gradient(135deg, #0c0c08 0%, #1e1e10 40%, #141410 100%); }
-.bg-cert::after { content: '\2726'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 72px; color: rgba(255,215,0,.12); pointer-events: none; }
-.bg-diploma-spia { background: linear-gradient(135deg, #080c18 0%, #0d1838 40%, #0a1030 100%); }
+.bg-cert { background: linear-gradient(135deg, #0c0c08 0%, #1e1e10 40%, #141410 100%); position: relative; overflow: hidden; }
+.bg-cert::after { content: '✦'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 72px; color: rgba(255,215,0,.12); pointer-events: none; }
+.bg-diploma-spia { background: linear-gradient(135deg, #080c18 0%, #0d1838 40%, #0a1030 100%); position: relative; overflow: hidden; }
 .bg-diploma-spia::after { content: 'UGA'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue',sans-serif; font-size: 52px; color: rgba(186,12,47,.25); letter-spacing: 3px; pointer-events: none; }
-.bg-diploma-bba { background: linear-gradient(135deg, #08140c 0%, #0d2218 40%, #0a1810 100%); }
+.bg-diploma-bba { background: linear-gradient(135deg, #08140c 0%, #0d2218 40%, #0a1810 100%); position: relative; overflow: hidden; }
 .bg-diploma-bba::after { content: 'BBA'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue',sans-serif; font-size: 52px; color: rgba(186,12,47,.25); letter-spacing: 3px; pointer-events: none; }
-.bg-sql-joins  { background: linear-gradient(135deg, #080c14 0%, #131f35 100%); }
+.bg-sql-joins { background: linear-gradient(135deg, #080c14 0%, #131f35 100%); }
 .bg-sql-window { background: linear-gradient(135deg, #0a0b16 0%, #191526 100%); }
-.bg-sql-date   { background: linear-gradient(135deg, #0b0c10 0%, #1a1c28 100%); }
-.bg-sql-index  { background: linear-gradient(135deg, #08120c 0%, #152010 100%); }
-.bg-sql-proc   { background: linear-gradient(135deg, #120808 0%, #251010 100%); }
-.bg-sql-null   { background: linear-gradient(135deg, #0c0c08 0%, #201e10 100%); }
+.bg-sql-date { background: linear-gradient(135deg, #0b0c10 0%, #1a1c28 100%); }
+.bg-sql-index { background: linear-gradient(135deg, #08120c 0%, #152010 100%); }
+.bg-sql-proc { background: linear-gradient(135deg, #120808 0%, #251010 100%); }
+.bg-sql-null { background: linear-gradient(135deg, #0c0c08 0%, #201e10 100%); }
 .bg-sql-delete { background: linear-gradient(135deg, #120808 0%, #2a0f0f 100%); }
-.bg-sql-cte    { background: linear-gradient(135deg, #080c14 0%, #0e1a2e 100%); }
-/* modal */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; backdrop-filter: blur(4px); }
+.bg-sql-cte { background: linear-gradient(135deg, #080c14 0%, #0e1a2e 100%); }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; backdrop-filter: blur(4px); padding: 16px; }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
 .modal { background: var(--surface); width: 90vw; max-width: 860px; max-height: 88vh; border-radius: 6px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--red) transparent; transform: scale(.96); transition: transform .3s; position: relative; }
 .modal-overlay.open .modal { transform: scale(1); }
@@ -132,7 +158,8 @@ nav.scrolled { background: rgba(20,20,20,.98); }
 .modal-tag { background: var(--surface2); border: 1px solid rgba(229,9,20,.2); color: #b3b3b3; font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 2px; letter-spacing: .5px; }
 .modal-download { display: flex; align-items: center; justify-content: center; gap: 10px; background: transparent; border: 1px solid var(--red); color: var(--red); font-size: 13px; font-weight: 700; padding: 13px 24px; border-radius: 4px; cursor: pointer; text-decoration: none; letter-spacing: .5px; transition: background .15s, color .15s; width: 100%; }
 .modal-download:hover { background: var(--red); color: #fff; }
-/* about */
+
+/* ABOUT */
 .about-section { padding: 40px 56px 60px; border-top: 1px solid rgba(255,255,255,.05); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; }
 .about-left { grid-column: span 2; }
 .about-heading { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--white); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; }
@@ -148,8 +175,10 @@ nav.scrolled { background: rgba(20,20,20,.98); }
 .skill-name { display: flex; justify-content: space-between; font-size: 12px; font-weight: 500; color: var(--text); letter-spacing: .5px; }
 .skill-pct { color: var(--red); }
 .skill-bar { height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
-.skill-fill { height: 100%; background: linear-gradient(90deg, var(--red), #ff4444); border-radius: 2px; transform-origin: left; animation: fillBar 1.4s cubic-bezier(.4,0,.2,1) forwards; transform: scaleX(0); }
-@keyframes fillBar { to { transform: scaleX(1); } }
+.skill-fill { height: 100%; background: linear-gradient(90deg, var(--red), #ff4444); border-radius: 2px; transform-origin: left; transform: scaleX(0); transition: transform 1.2s cubic-bezier(.4,0,.2,1); }
+.skill-fill.animated { transform: scaleX(1); }
+
+/* CONTACT */
 .contact-card { background: var(--surface); border: 1px solid rgba(229,9,20,.15); border-radius: 6px; padding: 28px 24px; }
 .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: 1px; margin-bottom: 4px; }
 .contact-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; letter-spacing: .5px; }
@@ -157,27 +186,50 @@ nav.scrolled { background: rgba(20,20,20,.98); }
 .contact-link:last-child { border-bottom: none; }
 .contact-link:hover { color: var(--white); }
 .contact-link span { color: var(--red); font-size: 16px; }
+
+/* FOOTER */
 footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); display: flex; justify-content: space-between; align-items: center; }
 .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--red); letter-spacing: 2px; }
 .footer-copy { font-size: 12px; color: var(--muted); }
+
+/* ANIMATIONS */
 .fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp .8s ease forwards; }
 .fade-in:nth-child(1) { animation-delay: .1s; }
 .fade-in:nth-child(2) { animation-delay: .2s; }
 .fade-in:nth-child(3) { animation-delay: .3s; }
 .fade-in:nth-child(4) { animation-delay: .4s; }
+.fade-in:nth-child(5) { animation-delay: .5s; }
 @keyframes fadeUp { to { opacity: 1; transform: none; } }
 .row-fade { opacity: 0; transform: translateX(-20px); }
 .row-fade.visible { animation: slideIn .6s ease forwards; }
 @keyframes slideIn { to { opacity: 1; transform: none; } }
-#img-store { display: none; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface2); border: 1px solid rgba(229,9,20,.3); color: var(--text); font-size: 13px; padding: 12px 20px; border-radius: 6px; z-index: 999; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; gap: 0; }
+  .nav-links, .nav-right { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero { padding: 0 20px 60px; height: auto; min-height: 100vh; align-items: center; }
+  .hero-stats { display: none; }
+  .row-header { padding: 0 20px; }
+  .cards-track { padding: 8px 20px 20px; }
+  .about-section { grid-template-columns: 1fr; padding: 32px 20px 48px; }
+  .about-left { grid-column: span 1; }
+  footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+  .modal-hero-content { padding: 16px 20px; }
+  .modal-body { padding: 20px; }
+  .modal-highlights { grid-template-columns: 1fr; }
+  .modal-title { font-size: 30px; }
+}
 </style>
 </head>
 <body>
 
-<div id="img-store">
-  <img id="noise-img" src="data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E" alt="">
-</div>
-
+<!-- NAV -->
 <nav id="navbar">
   <a class="nav-logo" href="#">LF</a>
   <ul class="nav-links">
@@ -191,12 +243,25 @@ footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); displa
     <span class="nav-badge">Open to Work</span>
     <a class="nav-contact" href="https://linkedin.com/in/oladipupo-f-3a620213a" target="_blank">LinkedIn</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#work" onclick="closeMobile()">Work</a>
+  <a href="#research" onclick="closeMobile()">Research</a>
+  <a href="#data" onclick="closeMobile()">Data</a>
+  <a href="#credentials" onclick="closeMobile()">Credentials</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <span class="nav-badge">Open to Work</span>
+  <a href="https://linkedin.com/in/oladipupo-f-3a620213a" target="_blank">LinkedIn ↗</a>
+</div>
+
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-noise" id="hero-noise"></div>
   <div class="hero-vignette"></div>
   <div class="hero-content">
     <div class="hero-eyebrow fade-in">
@@ -223,7 +288,7 @@ footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); displa
   </div>
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num">2<span>&#x1F393;</span></div>
+      <div class="stat-num">2<span>🎓</span></div>
       <div class="stat-label">UGA Degrees</div>
     </div>
     <div class="stat">
@@ -326,13 +391,13 @@ footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); displa
         <div class="degree-sub">Conferred August 4, 2025</div>
       </div>
     </div>
-    <div class="skills-grid">
-      <div class="skill-row"><div class="skill-name"><span>SQL / Database Engineering</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%;animation-delay:.2s"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span>Data Visualization &amp; Dashboards</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%;animation-delay:.3s"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span>Policy Research &amp; Writing</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%;animation-delay:.4s"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span>Process Modeling (BPMN)</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%;animation-delay:.5s"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span>Business Strategy &amp; Analysis</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%;animation-delay:.6s"></div></div></div>
-      <div class="skill-row"><div class="skill-name"><span>Management Information Systems</span><span class="skill-pct">87%</span></div><div class="skill-bar"><div class="skill-fill" style="width:87%;animation-delay:.7s"></div></div></div>
+    <div class="skills-grid" id="skillsGrid">
+      <div class="skill-row"><div class="skill-name"><span>SQL / Database Engineering</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:0.95"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Data Visualization &amp; Dashboards</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:0.88"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Policy Research &amp; Writing</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Process Modeling (BPMN)</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:0.80"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Business Strategy &amp; Analysis</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Management Information Systems</span><span class="skill-pct">87%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:0.87"></div></div></div>
     </div>
   </div>
   <div>
@@ -340,7 +405,7 @@ footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); displa
       <div class="contact-title">Let's Connect</div>
       <div class="contact-sub">Actively seeking analyst &amp; strategy roles</div>
       <a class="contact-link" href="https://linkedin.com/in/oladipupo-f-3a620213a" target="_blank"><span>in</span> LinkedIn Profile</a>
-      <a class="contact-link" href="https://github.com/ladicfash" target="_blank"><span>&#8997;</span> github.com/ladicfash</a>
+      <a class="contact-link" href="https://github.com/ladicfash" target="_blank"><span>⌥</span> github.com/ladicfash</a>
       <a class="contact-link" href="mailto:elos@n2nservices.com"><span>@</span> Email Me</a>
     </div>
   </div>
@@ -348,9 +413,10 @@ footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); displa
 
 <footer>
   <span class="footer-logo">LF</span>
-  <span class="footer-copy">&#169; 2026 Oladipupo Fashogbon &middot; Atlanta, GA &middot; Built for recruiters</span>
+  <span class="footer-copy">© 2026 Oladipupo Fashogbon &middot; Atlanta, GA &middot; Built for recruiters</span>
 </footer>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModalBtn()">&#x2715;</button>
@@ -366,16 +432,26 @@ footer { padding: 28px 56px; border-top: 1px solid rgba(255,255,255,.05); displa
   </div>
 </div>
 
-<script>
-(function() {
-  var img = document.getElementById('noise-img');
-  document.getElementById('hero-noise').style.backgroundImage = 'url("' + img.src + '")';
-})();
+<!-- TOAST -->
+<div class="toast" id="toast">📁 Upload this file to your repo to enable downloads</div>
 
+<script>
+// NAV scroll
 window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
 });
 
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Intersection observer - rows
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(e, i) {
     if (e.isIntersecting) setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
@@ -383,6 +459,25 @@ var observer = new IntersectionObserver(function(entries) {
 }, { threshold: 0.1 });
 document.querySelectorAll('.row-fade').forEach(function(r) { observer.observe(r); });
 
+// Skill bars animate on scroll
+var skillObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      var fills = e.target.querySelectorAll('.skill-fill');
+      fills.forEach(function(f, i) {
+        setTimeout(function() {
+          f.style.width = (parseFloat(f.style.getPropertyValue('--w')) * 100) + '%';
+          f.classList.add('animated');
+        }, i * 100 + 200);
+      });
+      skillObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+var sg = document.getElementById('skillsGrid');
+if (sg) skillObserver.observe(sg);
+
+// Modal data
 var P = {
   elos: {
     type:'Business Strategy &middot; N2N Services &middot; 2026', title:'ELOS 2036', bg:'bg-elos',
@@ -390,19 +485,19 @@ var P = {
     hl:[{n:'$322B',t:'Annual US cost from burnout &amp; disengagement'},{n:'23%',t:'Of the workday spent managing others\' emotions'},{n:'5',t:'Real competitors benchmarked (Viva Glint, Culture Amp, Qualtrics, Leapsome, Wellbeing.ai)'},{n:'$12&ndash;18',t:'Estimated per-user/month pricing for ELOS (hypothetical)'}],
     tags:['Market Research','Competitive Analysis','Pricing Strategy','AI/HR Tech','PowerPoint','N2N Services'],
     meta:[{l:'Type',v:'Business Strategy Deck'},{l:'Client',v:'N2N Services'},{l:'Year',v:'2026'},{l:'Format',v:'10-Slide PPTX'}],
-    dl:{label:'&#8659;&nbsp; Download PPTX',href:'ELOS_Big4_v4.pptx'}
+    dl:{label:'&#8659;&nbsp; Download PPTX',href:'assets/ELOS_Big4_v4.pptx'}
   },
   aflac: {
     type:'Data Dashboard &middot; Insurance Analytics &middot; 2025', title:'Aflac P&amp;C Dashboard', bg:'bg-aflac',
     desc:'An interactive performance analysis dashboard for Aflac\'s Property &amp; Casualty division built entirely in HTML, CSS, and Chart.js. Features a cyberpunk aesthetic with real-time KPI tiles, multi-chart layouts, and deep insurance metrics.',
-    hl:[{n:'5',t:'KPI tiles with glowing data display'},{n:'10+',t:'Chart types including bar, line, pie, and scatter'},{n:'100%',t:'Client-side &mdash; no backend required'},{n:'&infin;',t:'Filterable by year, region, and product line'}],
+    hl:[{n:'5',t:'KPI tiles with glowing data display'},{n:'10+',t:'Chart types including bar, line, pie, and scatter'},{n:'100%',t:'Client-side &mdash; no backend required'},{n:'∞',t:'Filterable by year, region, and product line'}],
     tags:['HTML/CSS/JS','Chart.js','Insurance Analytics','UI/UX Design','Data Visualization','P&amp;C Insurance'],
     meta:[{l:'Type',v:'Interactive Dashboard'},{l:'Tech',v:'HTML + Chart.js'},{l:'Domain',v:'Insurance (P&C)'},{l:'Year',v:'2025'}]
   },
   wto: {
     type:'Academic Research &middot; CURO Symposium &middot; UGA', title:'WTO Disputes &amp; Brazil', bg:'bg-wto',
     desc:'A CURO Symposium research poster from UGA School of Public &amp; International Affairs. Investigates how the DS267 Brazil-U.S. Cotton case (2002&ndash;2014) influenced Brazil\'s political leadership, governance structures, and economic trajectory.',
-    hl:[{n:'$300M',t:'Settlement paid by US to Brazil Cotton Institute in 2014'},{n:'2002&ndash;14',t:'Years of the DS267 cotton dispute (12+ years)'},{n:'4',t:'WTO cases analyzed (DS267, DS266, DS70, DS579)'},{n:'&uarr;',t:'Brazil leadership roles in international bodies post-2009'}],
+    hl:[{n:'$300M',t:'Settlement paid by US to Brazil Cotton Institute in 2014'},{n:'2002&ndash;14',t:'Years of the DS267 cotton dispute (12+ years)'},{n:'4',t:'WTO cases analyzed (DS267, DS266, DS70, DS579)'},{n:'↑',t:'Brazil leadership roles in international bodies post-2009'}],
     tags:['Trade Policy','International Relations','Econometrics','WTO','Brazil','Political Science','UGA SPIA'],
     meta:[{l:'Type',v:'Research Poster'},{l:'Venue',v:'CURO Symposium'},{l:'School',v:'UGA SPIA'},{l:'Advisor',v:'Joowon Yi'}]
   },
@@ -412,15 +507,15 @@ var P = {
     hl:[{n:'3',t:'Actor swim lanes (Applicant, OSA, Admission Officer)'},{n:'21d',t:'Final decision deadline gate in the process'},{n:'2wk',t:'Applicant response window post-acceptance offer'},{n:'BPMN',t:'2.0 standard notation with exclusive &amp; parallel gateways'}],
     tags:['BPMN 2.0','Process Modeling','Systems Design','Higher Education','Workflow Analysis'],
     meta:[{l:'Type',v:'BPMN Diagram'},{l:'Standard',v:'BPMN 2.0'},{l:'Domain',v:'Higher Education'},{l:'Tool',v:'Lucidchart / Draw.io'}],
-    dl:{label:'&#8659;&nbsp; Download PDF',href:'BPMN_Admissions.pdf'}
+    dl:{label:'&#8659;&nbsp; Download PDF',href:'assets/BPMN_Admissions.pdf'}
   },
   cert: {
     type:'LinkedIn Learning &middot; ServiceNow &middot; Dec 2024', title:'ServiceNow IT Leadership', bg:'bg-cert',
     desc:'Completed the ServiceNow IT Leadership Professional Certificate through LinkedIn Learning &mdash; a 6h 2min path covering enterprise IT management, architecture design, and strategic planning. Issued December 6, 2024. Certificate ID: fe942e644f3c56815fb3c1be17f763aea2967b7e5c2aeb0734e071c5afcc1c3b',
-    hl:[{n:'6h',t:'2 minutes of structured learning content'},{n:'3',t:'Core skill areas: IT PM, Architecture, Strategy'},{n:'&#10003;',t:'Verified certificate ID on LinkedIn'},{n:'2024',t:'Earned December 6, 2024'}],
+    hl:[{n:'6h',t:'2 minutes of structured learning content'},{n:'3',t:'Core skill areas: IT PM, Architecture, Strategy'},{n:'✓',t:'Verified certificate ID on LinkedIn'},{n:'2024',t:'Earned December 6, 2024'}],
     tags:['ServiceNow','IT Leadership','IT Project Management','IT Architecture','IT Strategy','LinkedIn Learning'],
     meta:[{l:'Platform',v:'LinkedIn Learning'},{l:'Issuer',v:'ServiceNow'},{l:'Date',v:'Dec 06, 2024'},{l:'Duration',v:'6h 2min'}],
-    dl:{label:'&#8659;&nbsp; Download Certificate PDF',href:'ServiceNow_Cert.pdf'}
+    dl:{label:'&#8659;&nbsp; Download Certificate PDF',href:'assets/ServiceNow_Cert.pdf'}
   },
   'diploma-spia': {
     type:'University of Georgia &middot; SPIA &middot; Aug 2025', title:'BA &mdash; International Affairs', bg:'bg-diploma-spia',
@@ -428,7 +523,7 @@ var P = {
     hl:[{n:'UGA',t:'School of Public &amp; International Affairs (SPIA)'},{n:'BA',t:'International Affairs &mdash; policy, diplomacy, and global systems'},{n:'2025',t:'Conferred August 4, 2025 at Athens, Georgia'},{n:'WTO',t:'CURO research on trade law &amp; emerging economies'}],
     tags:['International Affairs','UGA SPIA','Trade Policy','Political Science','Diplomacy','Athens GA'],
     meta:[{l:'Degree',v:'Bachelor of Arts'},{l:'Major',v:'International Affairs'},{l:'School',v:'UGA SPIA'},{l:'Conferred',v:'Aug 4, 2025'}],
-    dl:{label:'&#8659;&nbsp; Download Diploma PDF',href:'UGA_Diploma_SPIA.pdf'}
+    dl:{label:'&#8659;&nbsp; Download Diploma PDF',href:'assets/UGA_Diploma_SPIA.pdf'}
   },
   'diploma-bba': {
     type:'University of Georgia &middot; Terry College &middot; Aug 2025', title:'BBA &mdash; MIS', bg:'bg-diploma-bba',
@@ -436,17 +531,24 @@ var P = {
     hl:[{n:'UGA',t:'Terry College of Business &mdash; C. Herman &amp; Mary Virginia Terry'},{n:'BBA',t:'Management Information Systems &mdash; data, systems, and business'},{n:'2025',t:'Conferred August 4, 2025 at Athens, Georgia'},{n:'MIS',t:'Bridges technical systems with strategic business operations'}],
     tags:['Management Information Systems','UGA Terry','Business','MIS','Technology','Athens GA'],
     meta:[{l:'Degree',v:'BBA'},{l:'Major',v:'Management Information Systems'},{l:'School',v:'Terry College of Business'},{l:'Conferred',v:'Aug 4, 2025'}],
-    dl:{label:'&#8659;&nbsp; Download Diploma PDF',href:'UGA_Diploma_BBA.pdf'}
+    dl:{label:'&#8659;&nbsp; Download Diploma PDF',href:'assets/UGA_Diploma_BBA.pdf'}
   },
-  'sql-joins':  { type:'SQL Mastery Series &middot; Fundamentals', title:'SQL JOINs', bg:'bg-sql-joins', desc:'Production-quality reference covering all four SQL JOIN types with annotated code examples &mdash; INNER, LEFT, RIGHT, and FULL OUTER JOIN &mdash; each with real-world scenarios, aliasing tips, and NULL notes.', hl:[{n:'4',t:'JOIN types with code examples'},{n:'&infin;',t:'Works across PostgreSQL, MySQL, SQL Server'},{n:'Alias',t:'Always alias tables (e, d) for clean queries'},{n:'PDF',t:'Shareable dark-theme cheat sheet'}], tags:['SQL','INNER JOIN','LEFT JOIN','RIGHT JOIN','FULL OUTER JOIN','PostgreSQL'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Fundamentals'},{l:'DB Support',v:'Multi-DB'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-window': { type:'SQL Mastery Series &middot; Advanced', title:'Window Functions', bg:'bg-sql-window', desc:'Deep-dive reference on SQL Window Functions. Covers RANK(), DENSE_RANK(), ROW_NUMBER(), LAG(), LEAD(), SUM() OVER(), and moving averages with PARTITION BY and ORDER BY syntax.', hl:[{n:'7',t:'Window functions with examples'},{n:'OVER()',t:'Core syntax with PARTITION BY &amp; ORDER BY'},{n:'LAG',t:'&amp; LEAD for month-over-month comparisons'},{n:'SUM',t:'OVER for running totals without GROUP BY'}], tags:['SQL','Window Functions','RANK()','DENSE_RANK()','LAG/LEAD','Analytics'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Advanced'},{l:'Key Concept',v:'OVER() Clause'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-date':   { type:'SQL Mastery Series &middot; Intermediate', title:'Date &amp; Time Functions', bg:'bg-sql-date', desc:'Cross-database reference for temporal data in SQL. Covers NOW(), EXTRACT, DATE_TRUNC, DATEDIFF, DATEADD, and string formatting with TO_CHAR &mdash; with PostgreSQL, MySQL, and SQL Server variants side-by-side.', hl:[{n:'3',t:'Database platforms (PG, MySQL, SQL Server)'},{n:'TRUNC',t:'DATE_TRUNC for clean month/year grouping'},{n:'DIFF',t:'DATEDIFF to calculate tenure &amp; time gaps'},{n:'FMT',t:'TO_CHAR / FORMAT for readable output'}], tags:['SQL','Date Functions','PostgreSQL','MySQL','SQL Server','Time Series'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Intermediate'},{l:'Focus',v:'Cross-DB Temporal'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-index':  { type:'SQL Mastery Series &middot; Performance', title:'Indexes &amp; Performance', bg:'bg-sql-index', desc:'DBA-level reference for creating and analyzing indexes. Covers B-Tree, Hash, and Composite index types, when to index vs. avoid it, and EXPLAIN ANALYZE output interpretation.', hl:[{n:'3',t:'Index types: B-Tree, Hash, Composite'},{n:'EXPLAIN',t:'ANALYZE to pinpoint slow queries'},{n:'&darr;cost',t:'Lower cost= means faster query execution'},{n:'&#x2717;',t:'Avoid indexes on small or heavy-INSERT tables'}], tags:['SQL','Indexes','Performance Tuning','EXPLAIN ANALYZE','DBA','Query Optimization'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Advanced'},{l:'Focus',v:'Performance'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-proc':   { type:'SQL Mastery Series &middot; Architecture', title:'Stored Procedures &amp; Views', bg:'bg-sql-proc', desc:'Enterprise SQL architecture patterns: Views as virtual tables for clean reads, and Stored Procedures as parameterized code blocks for multi-step logic. Full comparison table and a real PostgreSQL give_raise() example.', hl:[{n:'VIEW',t:'Saved SELECT &mdash; query it like a table'},{n:'PROC',t:'Reusable code block with input params'},{n:'$$',t:'plpgsql block syntax for PostgreSQL'},{n:'CALL',t:'/ EXEC to invoke stored procedures'}], tags:['SQL','Views','Stored Procedures','plpgsql','PostgreSQL','SQL Server','Architecture'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Intermediate'},{l:'Focus',v:'Code Reuse'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-null':   { type:'SQL Mastery Series &middot; Data Quality', title:'NULL Handling &amp; COALESCE', bg:'bg-sql-null', desc:'Everything needed to handle missing data correctly in SQL. NULL is not zero, not empty string &mdash; and NULL != NULL. Covers COALESCE(), NULLIF(), IS NOT DISTINCT FROM, and CASE WHEN patterns.', hl:[{n:'NULL',t:'Not 0 and not empty string &mdash; it is unknown'},{n:'COALESCE',t:'Returns the first non-NULL in a list'},{n:'NULLIF',t:'Returns NULL when two values are equal'},{n:'CASE',t:'WHEN for multi-branch NULL categorization'}], tags:['SQL','NULL Handling','COALESCE','NULLIF','Data Quality','Data Cleaning'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Intermediate'},{l:'Focus',v:'Data Integrity'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-delete': { type:'SQL Mastery Series &middot; Safety', title:'DELETE / TRUNCATE / DROP', bg:'bg-sql-delete', desc:'The most dangerous SQL operations handled safely. DELETE (row-level with WHERE), TRUNCATE (all rows, fast), and DROP (table gone). Golden rule: always SELECT first. Transaction wrapping with BEGIN/ROLLBACK/COMMIT.', hl:[{n:'DELETE',t:'Safest &mdash; uses WHERE clause'},{n:'TRUNCATE',t:'Fast wipe &mdash; no WHERE allowed'},{n:'DROP',t:'Irreversible &mdash; deletes entire table structure'},{n:'TXN',t:'BEGIN / ROLLBACK as your safety net'}], tags:['SQL','DELETE','TRUNCATE','DROP','Transactions','Data Safety','DML'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'All Levels'},{l:'Focus',v:'Safety First'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} },
-  'sql-cte':    { type:'SQL Mastery Series &middot; Advanced', title:'Subqueries &amp; CTEs', bg:'bg-sql-cte', desc:'Advanced query structuring with Subqueries and CTEs. Covers subqueries in WHERE, FROM (derived tables), EXISTS checks, and chained WITH clauses as data pipelines. Includes performance guidance.', hl:[{n:'CTE',t:'Named temp result &mdash; readable &amp; reusable'},{n:'EXISTS',t:'Check for related rows without returning them'},{n:'CHAIN',t:'Multiple CTEs for step-by-step pipelines'},{n:'&#9888;',t:'Correlated subqueries run once per row &mdash; can be slow'}], tags:['SQL','CTEs','WITH clause','Subqueries','EXISTS','Data Pipelines','Advanced'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Advanced'},{l:'Focus',v:'Query Structure'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download Full SQL Cheat Sheet PDF',href:'SQL_Cheatsheet_Ladi_Final.pdf'} }
+  'sql-joins': { type:'SQL Mastery Series &middot; Fundamentals', title:'SQL JOINs', bg:'bg-sql-joins', desc:'Production-quality reference covering all four SQL JOIN types with annotated code examples &mdash; INNER, LEFT, RIGHT, and FULL OUTER JOIN &mdash; each with real-world scenarios, aliasing tips, and NULL notes.', hl:[{n:'4',t:'JOIN types with code examples'},{n:'∞',t:'Works across PostgreSQL, MySQL, SQL Server'},{n:'Alias',t:'Always alias tables (e, d) for clean queries'},{n:'PDF',t:'Shareable dark-theme cheat sheet'}], tags:['SQL','INNER JOIN','LEFT JOIN','RIGHT JOIN','FULL OUTER JOIN','PostgreSQL'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Fundamentals'},{l:'DB Support',v:'Multi-DB'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-window': { type:'SQL Mastery Series &middot; Advanced', title:'Window Functions', bg:'bg-sql-window', desc:'Deep-dive reference on SQL Window Functions. Covers RANK(), DENSE_RANK(), ROW_NUMBER(), LAG(), LEAD(), SUM() OVER(), and moving averages with PARTITION BY and ORDER BY syntax.', hl:[{n:'7',t:'Window functions with examples'},{n:'OVER()',t:'Core syntax with PARTITION BY &amp; ORDER BY'},{n:'LAG',t:'&amp; LEAD for month-over-month comparisons'},{n:'SUM',t:'OVER for running totals without GROUP BY'}], tags:['SQL','Window Functions','RANK()','DENSE_RANK()','LAG/LEAD','Analytics'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Advanced'},{l:'Key Concept',v:'OVER() Clause'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-date': { type:'SQL Mastery Series &middot; Intermediate', title:'Date &amp; Time Functions', bg:'bg-sql-date', desc:'Cross-database reference for temporal data in SQL. Covers NOW(), EXTRACT, DATE_TRUNC, DATEDIFF, DATEADD, and string formatting with TO_CHAR &mdash; with PostgreSQL, MySQL, and SQL Server variants side-by-side.', hl:[{n:'3',t:'Database platforms (PG, MySQL, SQL Server)'},{n:'TRUNC',t:'DATE_TRUNC for clean month/year grouping'},{n:'DIFF',t:'DATEDIFF to calculate tenure &amp; time gaps'},{n:'FMT',t:'TO_CHAR / FORMAT for readable output'}], tags:['SQL','Date Functions','PostgreSQL','MySQL','SQL Server','Time Series'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Intermediate'},{l:'Focus',v:'Cross-DB Temporal'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-index': { type:'SQL Mastery Series &middot; Performance', title:'Indexes &amp; Performance', bg:'bg-sql-index', desc:'DBA-level reference for creating and analyzing indexes. Covers B-Tree, Hash, and Composite index types, when to index vs. avoid it, and EXPLAIN ANALYZE output interpretation.', hl:[{n:'3',t:'Index types: B-Tree, Hash, Composite'},{n:'EXPLAIN',t:'ANALYZE to pinpoint slow queries'},{n:'↓cost',t:'Lower cost= means faster query execution'},{n:'✗',t:'Avoid indexes on small or heavy-INSERT tables'}], tags:['SQL','Indexes','Performance Tuning','EXPLAIN ANALYZE','DBA','Query Optimization'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Advanced'},{l:'Focus',v:'Performance'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-proc': { type:'SQL Mastery Series &middot; Architecture', title:'Stored Procedures &amp; Views', bg:'bg-sql-proc', desc:'Enterprise SQL architecture patterns: Views as virtual tables for clean reads, and Stored Procedures as parameterized code blocks for multi-step logic. Full comparison table and a real PostgreSQL give_raise() example.', hl:[{n:'VIEW',t:'Saved SELECT &mdash; query it like a table'},{n:'PROC',t:'Reusable code block with input params'},{n:'$$',t:'plpgsql block syntax for PostgreSQL'},{n:'CALL',t:'/ EXEC to invoke stored procedures'}], tags:['SQL','Views','Stored Procedures','plpgsql','PostgreSQL','SQL Server','Architecture'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Intermediate'},{l:'Focus',v:'Code Reuse'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-null': { type:'SQL Mastery Series &middot; Data Quality', title:'NULL Handling &amp; COALESCE', bg:'bg-sql-null', desc:'Everything needed to handle missing data correctly in SQL. NULL is not zero, not empty string &mdash; and NULL != NULL. Covers COALESCE(), NULLIF(), IS NOT DISTINCT FROM, and CASE WHEN patterns.', hl:[{n:'NULL',t:'Not 0 and not empty string &mdash; it is unknown'},{n:'COALESCE',t:'Returns the first non-NULL in a list'},{n:'NULLIF',t:'Returns NULL when two values are equal'},{n:'CASE',t:'WHEN for multi-branch NULL categorization'}], tags:['SQL','NULL Handling','COALESCE','NULLIF','Data Quality','Data Cleaning'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Intermediate'},{l:'Focus',v:'Data Integrity'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-delete': { type:'SQL Mastery Series &middot; Safety', title:'DELETE / TRUNCATE / DROP', bg:'bg-sql-delete', desc:'The most dangerous SQL operations handled safely. DELETE (row-level with WHERE), TRUNCATE (all rows, fast), and DROP (table gone). Golden rule: always SELECT first. Transaction wrapping with BEGIN/ROLLBACK/COMMIT.', hl:[{n:'DELETE',t:'Safest &mdash; uses WHERE clause'},{n:'TRUNCATE',t:'Fast wipe &mdash; no WHERE allowed'},{n:'DROP',t:'Irreversible &mdash; deletes entire table structure'},{n:'TXN',t:'BEGIN / ROLLBACK as your safety net'}], tags:['SQL','DELETE','TRUNCATE','DROP','Transactions','Data Safety','DML'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'All Levels'},{l:'Focus',v:'Safety First'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} },
+  'sql-cte': { type:'SQL Mastery Series &middot; Advanced', title:'Subqueries &amp; CTEs', bg:'bg-sql-cte', desc:'Advanced query structuring with Subqueries and CTEs. Covers subqueries in WHERE, FROM (derived tables), EXISTS checks, and chained WITH clauses as data pipelines. Includes performance guidance.', hl:[{n:'CTE',t:'Named temp result &mdash; readable &amp; reusable'},{n:'EXISTS',t:'Check for related rows without returning them'},{n:'CHAIN',t:'Multiple CTEs for step-by-step pipelines'},{n:'⚠',t:'Correlated subqueries run once per row &mdash; can be slow'}], tags:['SQL','CTEs','WITH clause','Subqueries','EXISTS','Data Pipelines','Advanced'], meta:[{l:'Series',v:'SQL Mastery'},{l:'Level',v:'Advanced'},{l:'Focus',v:'Query Structure'},{l:'Format',v:'PDF Cheat Sheet'}], dl:{label:'&#8659;&nbsp; Download SQL Cheat Sheet PDF',href:'assets/SQL_Cheatsheet_Ladi_Final.pdf'} }
 };
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
 
 function openModal(id) {
   var p = P[id]; if (!p) return;
@@ -456,7 +558,7 @@ function openModal(id) {
   var mh = p.meta.map(function(m){ return '<div class="meta-item"><div class="meta-label">'+m.l+'</div><div class="meta-value">'+m.v+'</div></div>'; }).join('');
   var hh = p.hl.map(function(h){ return '<div class="highlight-item"><div class="highlight-num">'+h.n+'</div><div class="highlight-text">'+h.t+'</div></div>'; }).join('');
   var th = p.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
-  var dh = p.dl ? '<a class="modal-download" href="'+p.dl.href+'" download>'+p.dl.label+'</a>' : '';
+  var dh = p.dl ? '<button class="modal-download" onclick="handleDownload(\''+p.dl.href+'\', \''+p.dl.label+'\')">'+p.dl.label+'</button>' : '';
   document.getElementById('modalBody').innerHTML =
     '<div class="modal-meta">'+mh+'</div>'+
     '<p class="modal-desc">'+p.desc+'</p>'+
@@ -468,6 +570,21 @@ function openModal(id) {
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
+function handleDownload(href, label) {
+  // Try to fetch; if file doesn't exist show toast
+  fetch(href, {method:'HEAD'}).then(function(r) {
+    if (r.ok) {
+      var a = document.createElement('a');
+      a.href = href; a.download = ''; a.click();
+    } else {
+      showToast('📁 Add this file to your /assets folder in the repo to enable download');
+    }
+  }).catch(function() {
+    showToast('📁 Add the file to your /assets folder in the repo to enable download');
+  });
+}
+
 function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalBtn(); }
 function closeModalBtn() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModalBtn(); });
